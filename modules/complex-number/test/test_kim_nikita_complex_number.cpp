@@ -52,7 +52,7 @@ TEST(Kim_Nikita_ComplexNumberTest, Can_Prod) {
   EXPECT_DOUBLE_EQ(0.4, z_3.getIm());
 }
 
-TEST(Kim_Nikita_ComplexNumberTest, Can_Do_Large_Op) {
+TEST(Kim_Nikita_ComplexNumberTest, Can_Do_Large_Operations) {
   // Arrange
   double re_1 = 1.0;
   double im_1 = 0.1;
