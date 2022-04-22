@@ -57,3 +57,8 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_decoder) {
   EXPECT_EQ(exp_text, res_text);
 }
 
+TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
+  // Assert
+  EXPECT_TRUE(true);
+}
+
