@@ -13,8 +13,7 @@ GronsfeldCipher::GronsfeldCipher() {
   }
 }
 
-std::string GronsfeldCipher::getGronsfeldTable()
-{
+std::string GronsfeldCipher::getGronsfeldTable() {
   std::string gronsfeld_table = "";
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 26; j++) {
@@ -26,7 +25,7 @@ std::string GronsfeldCipher::getGronsfeldTable()
 }
 
 std::string GronsfeldCipher::encode(std::string source_text, std::string key) {
-  // TODO check key
+  // check key
   std::string ciphered_text = "";
   std::string period_key = "";
 
@@ -47,8 +46,9 @@ std::string GronsfeldCipher::encode(std::string source_text, std::string key) {
   return ciphered_text;
 }
 
-std::string GronsfeldCipher::decode(std::string ciphered_text, std::string key) {
-  // TODO check key
+std::string GronsfeldCipher::decode(
+  std::string ciphered_text, std::string key) {
+  // check key
   std::string source_text = "";
   std::string period_key = "";
 
@@ -63,10 +63,11 @@ std::string GronsfeldCipher::decode(std::string ciphered_text, std::string key) 
 
   for (int i = 0; i < size; i++) {
     int j = 0;
-    while (table[i][j] != ciphered_text[i]) {
+    int k = period_key[i] - pos_Zero;
+    while (table[k][j] != ciphered_text[i]) {
       j++;
     }
-    source_text += table[period_key[i] - pos_Zero][j];
+    source_text += table[k][j];
   }
 
   return source_text;
