@@ -66,16 +66,17 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
   std::string source_text =
     "THEGRONSFELDCIPHERISVERYDIFFICULTTOHACKBUTITHINKIDIDITWELLENOUGH";
   std::string ciphered_text = gc.encode(source_text, exp_key);
+  int exp_size = exp_key.size();
   // The longer the text relative to the key, the more accurate the result
-  int allowed_misses = ceil(static_cast<double>(exp_key.size()) /
-    source_text.size() * exp_key.size());
+  int allowed_misses = ceil(static_cast<double>(exp_size) /
+    source_text.size() * exp_size);
   int count_misses = 0;
 
   // Act
   res_key = gc.hack(ciphered_text, exp_key.size());
 
   // Assert
-  for (int i = 0; i < exp_key.size(); i++) {
+  for (int i = 0; i < exp_size; i++) {
     if (exp_key[i] != res_key[i]) {
       count_misses++;
     }
