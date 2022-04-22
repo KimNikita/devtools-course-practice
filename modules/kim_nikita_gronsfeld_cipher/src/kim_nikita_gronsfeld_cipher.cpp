@@ -6,8 +6,7 @@
 
 #include "include/kim_nikita_gronsfeld_cipher.h"
 
-int GronsfeldCipher::mod(int start, int end, int result)
-{
+int GronsfeldCipher::mod(int start, int end, int result) {
   int difference = end - start;
   int result_from_start = result - start;
   int res = start + result_from_start % difference;
@@ -17,7 +16,8 @@ int GronsfeldCipher::mod(int start, int end, int result)
   return res;
 }
 
-double GronsfeldCipher::transvection(std::map<char, int> frequencies, double probability[], int d, int sub_size) {
+double GronsfeldCipher::transvection(std::map<char, int> frequencies,
+  double probability[], int d, int sub_size) {
   double prob = 0;
   for (char ch = 'A'; ch <= 'Z'; ch++) {
     double freq = frequencies[ch] * 1.0 / sub_size;
@@ -48,7 +48,6 @@ std::string GronsfeldCipher::getGronsfeldTable() {
 }
 
 std::string GronsfeldCipher::encode(std::string source_text, std::string key) {
-  // check key
   std::string ciphered_text = "";
   std::string period_key = "";
 
@@ -68,7 +67,6 @@ std::string GronsfeldCipher::encode(std::string source_text, std::string key) {
 
 std::string GronsfeldCipher::decode(
   std::string ciphered_text, std::string key) {
-  // check key
   std::string source_text = "";
   std::string period_key = "";
 
@@ -92,7 +90,7 @@ std::string GronsfeldCipher::decode(
 }
 
 std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
-  // Таблица частотного распределения букв английского алфавита
+  // Table of frequency distribution of letters of the English alphabet
   double probability[] = { 0.082, 0.015, 0.028, 0.043, 0.127, 0.022, 0.02,
     0.061, 0.07, 0.002, 0.008, 0.04, 0.024, 0.067, 0.075, 0.019, 0.001, 0.06,
     0.063, 0.091, 0.028, 0.01, 0.023, 0.001, 0.02, 0.001 };
@@ -101,7 +99,8 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
   int text_size = ciphered_text.size();
   std::vector<std::string> groups;
 
-  // Делим текст на группы символов соответствующих i символу ключа
+  // Divide the text into groups of characters corresponding
+  // to the i character of the key
   for (int i = 0; i < key_length; i++) {
     std::string temp_str = "";
     for (int j = 0; i + j * key_length < text_size; j++) {
@@ -110,7 +109,7 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
     groups.push_back(temp_str);
   }
 
-  // Ищем ключ
+  // Generate key
   for (int i = 0; i < key_length; i++) {
     double max_prob = 0;
     char key_piece;
@@ -118,7 +117,7 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
     int sub_size = sub_cipher.size();
     std::map<char, int> frequencies;
 
-    // Считаем частоты букв в группе
+    // Counting the frequencies of letters in a group
     for (char ch = 'A'; ch <= 'Z'; ch++) {
       frequencies[ch] = 0;
     }
@@ -126,7 +125,8 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
       frequencies[sub_cipher[i]]++;
     }
 
-    // Для каждой цифры определяем вероятность ее появления на i позиции ключа
+    // For each digit determine the probability of its occurrence
+    // at the i position of the key
     for (int d = 0; d < 10; d++) {
       double prob = transvection(frequencies, probability, d, sub_size);
       if (prob >= max_prob) {
