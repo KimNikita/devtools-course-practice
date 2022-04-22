@@ -55,16 +55,14 @@ std::string GronsfeldCipher::decode(std::string ciphered_text, std::string key) 
   int size = ciphered_text.size();
   int period = key.size();
 
-  char pos_A = 'A';
   char pos_Zero = '0';
 
   for (int i = 0; i < size; i++) {
     period_key += key[i % period];
   }
 
-  int j;
   for (int i = 0; i < size; i++) {
-    j = 0;
+    int j = 0;
     while (table[i][j] != ciphered_text[i]) {
       j++;
     }
