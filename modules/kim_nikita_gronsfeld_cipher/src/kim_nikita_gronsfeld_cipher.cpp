@@ -55,15 +55,12 @@ std::string GronsfeldCipher::encode(std::string source_text, std::string key) {
   int size = source_text.size();
   int period = key.size();
 
-  char pos_A = 'A';
-  char pos_Zero = '0';
-
   for (int i = 0; i < size; i++) {
     period_key += key[i % period];
   }
 
   for (int i = 0; i < size; i++) {
-    ciphered_text += table[period_key[i] - pos_Zero][source_text[i] - pos_A];
+    ciphered_text += table[period_key[i] - '0'][source_text[i] - 'A'];
   }
 
   return ciphered_text;
@@ -78,15 +75,13 @@ std::string GronsfeldCipher::decode(
   int size = ciphered_text.size();
   int period = key.size();
 
-  char pos_Zero = '0';
-
   for (int i = 0; i < size; i++) {
     period_key += key[i % period];
   }
 
   for (int i = 0; i < size; i++) {
     int j = 0;
-    int k = period_key[i] - pos_Zero;
+    int k = period_key[i] - '0';
     while (table[k][j] != ciphered_text[i]) {
       j++;
     }
@@ -106,7 +101,7 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
   int text_size = ciphered_text.size();
   std::vector<std::string> groups;
 
-  // Делим текст на группы длиной как у ключа
+  // Делим текст на группы символов соответствующих i символу ключа
   for (int i = 0; i < key_length; i++) {
     std::string temp_str = "";
     for (int j = 0; i + j * key_length < text_size; j++) {
@@ -118,7 +113,6 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
   // Ищем ключ
   for (int i = 0; i < key_length; i++) {
     double max_prob = 0;
-    double prob = 0;
     char key_piece;
     std::string sub_cipher = groups[i];
     int sub_size = sub_cipher.size();
@@ -134,10 +128,10 @@ std::string GronsfeldCipher::hack(std::string ciphered_text, int key_length) {
 
     // Для каждой цифры определяем вероятность ее появления на i позиции ключа
     for (int d = 0; d < 10; d++) {
-      prob = transvection(frequencies, probability, d, sub_size);
+      double prob = transvection(frequencies, probability, d, sub_size);
       if (prob >= max_prob) {
         max_prob = prob;
-        key_piece = d - '0';
+        key_piece = d + '0';
       }
     }
     key += key_piece;

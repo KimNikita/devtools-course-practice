@@ -10,7 +10,8 @@ class GronsfeldCipher {
  private:
     char table[10][26];
     int mod(int start, int end, int result);
-    double transvection(std::map<char, int> frequencies, double probability[], int d, int sub_size);
+    double transvection(std::map<char, int> frequencies, double probability[],
+      int d, int sub_size);
  public:
     GronsfeldCipher();
     std::string getGronsfeldTable();

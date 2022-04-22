@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
+#include <math.h>
 
 #include "include/kim_nikita_gronsfeld_cipher.h"
 
@@ -60,13 +61,23 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_decoder) {
 TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
   // Arrange
   GronsfeldCipher gc;
-  std::string exp_key = "2015";
+  std::string exp_key = "2022";
   std::string res_key;
+  std::string source_text = "THEGRONSFELDCIPHERISVERYDIFFICULTTOHACKBUTITHINKIDIDITWELLENOUGH";
+  std::string ciphered_text = gc.encode(source_text, exp_key);
+  // Чем длиннее текст относительно ключа тем точнее результат
+  int allowed_misses = ceil(static_cast<double>(exp_key.size()) / source_text.size() * exp_key.size());
+  int count_misses = 0;
 
   // Act
-  res_key = gc.hack("IRPSUFFQF", 4);
+  res_key = gc.hack(ciphered_text, exp_key.size());
 
   // Assert
-  EXPECT_EQ(exp_key, res_key);
+  for (int i = 0; i < exp_key.size(); i++) {
+    if (exp_key[i] != res_key[i]) {
+      count_misses++;
+    }
+  }
+  EXPECT_LE(count_misses, allowed_misses);
 }
 
