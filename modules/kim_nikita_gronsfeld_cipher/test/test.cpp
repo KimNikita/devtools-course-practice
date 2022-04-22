@@ -58,7 +58,15 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_decoder) {
 }
 
 TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
-  // Assert dasa
-  EXPECT_TRUE(true);
+  // Arrange
+  GronsfeldCipher gc;
+  std::string exp_key = "2015";
+  std::string res_key;
+
+  // Act
+  res_key = gc.hack("IRPSUFFQF", 4);
+
+  // Assert
+  EXPECT_EQ(exp_key, res_key);
 }
 
