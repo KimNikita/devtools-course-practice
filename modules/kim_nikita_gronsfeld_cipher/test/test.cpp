@@ -63,8 +63,8 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
   GronsfeldCipher gc;
   std::string exp_key = "2022";
   std::string res_key;
-  std::string source_text = 
-    "THEGRONSFELDCIPHERISVERYDIFFICULTTOHACKBUTITHINKIDIDITWELLENOUGH";
+  std::string source_text = "THEGRONSFELDCIPHERISVERYDIFFICULTTOHACK \
+    BUTITHINKIDIDITWELLENOUGH";
   std::string ciphered_text = gc.encode(source_text, exp_key);
   // The longer the text relative to the key, the more accurate the result
   int allowed_misses = ceil(static_cast<double>(exp_key.size()) /
