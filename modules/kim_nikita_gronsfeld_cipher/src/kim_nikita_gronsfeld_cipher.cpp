@@ -67,7 +67,7 @@ std::string GronsfeldCipher::decode(
     while (table[k][j] != ciphered_text[i]) {
       j++;
     }
-    source_text += table[k][j];
+    source_text += table[0][j];
   }
 
   return source_text;
