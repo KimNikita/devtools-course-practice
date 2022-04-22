@@ -58,7 +58,7 @@ TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_decoder) {
 }
 
 TEST(Kim_Nikita_Gronfeld_Cipher_Test, check_hacker) {
-  // Assert
+  // Assert dasa
   EXPECT_TRUE(true);
 }
 
