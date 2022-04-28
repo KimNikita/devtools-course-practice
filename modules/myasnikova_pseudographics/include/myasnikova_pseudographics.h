@@ -8,7 +8,7 @@
 class Pseudographics {
  public:
     Pseudographics();
-    void PrintPseudographics(int num);
+    std::string PrintPseudographics(int num);
  private:
     std::string cout_0[3];
     std::string cout_1[3];

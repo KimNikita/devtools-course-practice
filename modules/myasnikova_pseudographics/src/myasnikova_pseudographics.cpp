@@ -1,8 +1,9 @@
 // Copyright 2022 Myasnikova Varvara
 
-#include "include/myasnikova_pseudographics.h"
 #include <iostream>
 #include <string>
+
+#include "include/myasnikova_pseudographics.h"
 
 Pseudographics::Pseudographics() {
   cout_0[0] = "._.";
@@ -46,48 +47,57 @@ Pseudographics::Pseudographics() {
   cout_9[2] = "..|";
 }
 
-void Pseudographics::PrintPseudographics(int num) {
-  if (num < 0) {
-    throw - 1;
+std::string Pseudographics::PrintPseudographics(int num) {
+  try {
+    if (num < 0) {
+      throw std::string("A negative number!");
+    }
+  }
+  catch (std::string& str) {
+    return str;
   }
 
+  std::string result;
   std::string num_in_string = std::to_string(num);
   int len = num_in_string.length();
+
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < len; j++) {
       switch (num_in_string[j] - '0') {
       case 0:
-        std::cout << cout_0[i] << " ";
+        result += cout_0[i] + " ";
         break;
       case 1:
-        std::cout << cout_1[i] << " ";
+        result += cout_1[i] + " ";
         break;
       case 2:
-        std::cout << cout_2[i] << " ";
+        result += cout_2[i] + " ";
         break;
       case 3:
-        std::cout << cout_3[i] << " ";
+        result += cout_3[i] + " ";
         break;
       case 4:
-        std::cout << cout_4[i] << " ";
+        result += cout_4[i] + " ";
         break;
       case 5:
-        std::cout << cout_5[i] << " ";
+        result += cout_5[i] + " ";
         break;
       case 6:
-        std::cout << cout_6[i] << " ";
+        result += cout_6[i] + " ";
         break;
       case 7:
-        std::cout << cout_7[i] << " ";
+        result += cout_7[i] + " ";
         break;
       case 8:
-        std::cout << cout_8[i] << " ";
+        result += cout_8[i] + " ";
         break;
       case 9:
-        std::cout << cout_9[i] << " ";
+        result += cout_9[i] + " ";
         break;
       }
     }
-    std::cout << std::endl;
+    result += "\n";
   }
+
+  return result;
 }

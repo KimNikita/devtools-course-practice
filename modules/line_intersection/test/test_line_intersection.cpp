@@ -48,3 +48,9 @@ TEST(Line_Intersection, Double_Point_2) {
     20.20, 40.40, 1.1);
   ASSERT_TRUE(res);
 }
+
+TEST(Line_Intersection, Double_Point_3) {
+  bool res = LineIntersection::isCrossing(18.19, 0.0, 2.2, 20.20, 10.8,
+    12.0, 10.7, 40.12);
+  ASSERT_FALSE(res);
+}

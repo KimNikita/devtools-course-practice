@@ -63,7 +63,17 @@ TEST(Pseudographics, CanPrintALotOfNumbers_2) {
   ASSERT_NO_THROW(p.PrintPseudographics(123456789));
 }
 
+TEST(Pseudographics, CanPrintALotOfNumbers_3) {
+  Pseudographics p;
+  ASSERT_NO_THROW(p.PrintPseudographics(102030));
+}
+
+TEST(Pseudographics, CanPrintALotOfNumbers_4) {
+  Pseudographics p;
+  ASSERT_NO_THROW(p.PrintPseudographics(223344));
+}
+
 TEST(Pseudographics, CannotPrintANegativeNumber) {
   Pseudographics p;
-  ASSERT_ANY_THROW(p.PrintPseudographics(-10));
+  ASSERT_EQ(p.PrintPseudographics(-10), "A negative number!");
 }
