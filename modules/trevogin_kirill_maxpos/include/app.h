@@ -4,7 +4,7 @@
 #define MODULES_TREVOGIN_KIRILL_MAXPOS_INCLUDE_APP_H_
 
 #include <string>
-#include "trevogin_kirill_maxpos.h"
+#include "include/trevogin_kirill_maxpos.h"
 
 class LongerApp {
  public:
