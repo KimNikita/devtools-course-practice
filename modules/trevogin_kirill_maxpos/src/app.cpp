@@ -29,8 +29,7 @@ std::string LongerApp::operator()(int argc, const char** argv) {
   return output;
 }
 
-bool LongerApp::check_args(int argc, const char** argv)
-{
+bool LongerApp::check_args(int argc, const char** argv) {
   for (int i = 1; i < argc; i++) {
     for (int j = 0; argv[i][j] != '\0'; j++) {
       if (!isdigit(argv[i][j])) {
@@ -41,7 +40,7 @@ bool LongerApp::check_args(int argc, const char** argv)
   return true;
 }
 
-std::string LongerApp::help()
-{
-  return "The application searches for the longest increasing subsequence of a given array";
+std::string LongerApp::help() {
+  return "The application searches for the longest increasing \
+    subsequence of a given array";
 }

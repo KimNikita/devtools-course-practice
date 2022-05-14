@@ -24,8 +24,7 @@ std::vector<int> Longer::longestIncreasingSubsequence(std::vector<int> vec) {
   for (int i = 0; i < size_of_vec - 1; i++) {
     if (vec[i + 1] > vec[i]) {
       k++;
-    }
-    else {
+    } else {
       k = 0;
     }
     if (k > max) {
