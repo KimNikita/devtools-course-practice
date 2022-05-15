@@ -41,6 +41,6 @@ bool LongerApp::check_args(int argc, const char** argv) {
 }
 
 std::string LongerApp::help() {
-  return "The application searches for the longest \
-increasing subsequence of a given array";
+  return "The application searches for the longest"
+         " increasing subsequence of a given array";
 }
