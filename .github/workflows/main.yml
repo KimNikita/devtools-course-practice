@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
 
+
 env:
   CTEST_EXT_COLOR_OUTPUT: TRUE
   CTEST_WITH_SUBMIT: FALSE
